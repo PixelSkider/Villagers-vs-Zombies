@@ -40,7 +40,8 @@ public class RenderUtil {
 
 
     public static void drawImage(Graphics g, String name, int x, int y, int width, int height){
-        File file = new File(FileUtil.getRunPath() + "\\resource\\img\\" + name + ".png");
+        if (y < 0) return;
+        File file = getImage(name);
         try {
             BufferedImage image = ImageIO.read(file);
             g.drawImage(image,x,y,width,height,null);
@@ -51,13 +52,29 @@ public class RenderUtil {
         }
     }
 
+    public static Image getIcon(){
+        File file = getImage("Icon");
+        try {
+            logger.info("Read Icon Successfully");
+            return ImageIO.read(file);
+        }catch (IOException e){
+            logger.error("read icon error");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static File getImage(String name){
+        return new File(FileUtil.getRunPath() + "\\resource\\img\\" + name + ".png");
+    }
+
     public static void drawHealthBottom(Graphics g, int x, int y, int health,int height,int width){
         g.setColor(Color.RED);
         g.draw3DRect(x - (120 -width) / 2,y + height + 10,120,10,false);
         g.fillRect(x - (120 -width) / 2,y + height + 10,health + 20,10);
     }
 
-    public static void drawHealthTop(Graphics g, int x, int y, int health,int height,int width){
+    public static void drawHealthTop(Graphics g, int x, int y, int health,int width){
         g.setColor(Color.RED);
         g.draw3DRect(x - (120 -width) / 2,y - 15,120,10,false);
         g.fillRect(x - (120 -width) / 2,y - 15,health + 20,10);

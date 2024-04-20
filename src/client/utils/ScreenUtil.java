@@ -1,4 +1,4 @@
-package client.main;
+package client.utils;
 
 /**
  * @author: Skider!!!
@@ -7,7 +7,7 @@ package client.main;
  * @FileName: Screen
  * @History:
  */
-public class Screen {
+public class ScreenUtil {
     public static int screen_width = 750;
     public static int screen_height = 450;
     public static int screen_width_half = screen_width / 2;

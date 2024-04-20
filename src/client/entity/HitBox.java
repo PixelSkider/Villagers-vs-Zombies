@@ -8,12 +8,23 @@ package client.entity;
  */
 public class HitBox {
     public boolean press(Farmer rect1, Zombie rect2){
-        if(rect1.x >= rect2.x
+        return rect1.x >= rect2.x
                 && rect1.x <= rect2.x + rect2.width
                 && rect1.y >= rect2.y
-                && rect1.y <= rect2.y + rect2.height){
-            return true;
-        }
-        return false;
+                && rect1.y <= rect2.y + rect2.height;
+    }
+
+    public boolean press(Zombie rect1, Bullet rect2){
+        return rect1.x >= rect2.x
+                && rect1.x <= rect2.x + rect2.width
+                && rect1.y >= rect2.y
+                && rect1.y <= rect2.y + rect2.height;
+    }
+
+    public boolean press(Bullet rect1, Zombie rect2){
+        return rect1.x >= rect2.x
+                && rect1.x <= rect2.x + rect2.width
+                && rect1.y >= rect2.y
+                && rect1.y <= rect2.y + rect2.height;
     }
 }

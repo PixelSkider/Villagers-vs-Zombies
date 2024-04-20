@@ -12,7 +12,7 @@ import org.apache.log4j.PropertyConfigurator;
  */
 public class Start {
     public static void main(String[] args) {
-        PropertyConfigurator.configure("src/log4j.properties");
+        PropertyConfigurator.configure("src/client/log4j.properties");
         new Main();
     }
 }

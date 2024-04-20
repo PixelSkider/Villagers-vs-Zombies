@@ -1,21 +1,23 @@
 package client.entity;
 
-import client.main.Screen;
+import client.utils.ScreenUtil;
 import client.utils.FileUtil;
 import client.utils.RenderUtil;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+import static client.main.Main.logger;
+
 public class Farmer {
 
     int health = 100;
     int width = 80;
     int height = 100;
-    int x = Screen.screen_width_half - 40;
-    int y = Screen.screen_height - height - 50;
+    public int x = ScreenUtil.screen_width_half - 40;
+    public int y = ScreenUtil.screen_height - height - 50;
     int steps = 3;
-    Boolean isDied = false;
+    public Boolean isDied = false;
     Zombie zombie = new Zombie();
     Dir dir = Dir.Stop;
     Font font = FileUtil.loadFont("main",20);
@@ -35,9 +37,10 @@ public class Farmer {
     }
 
     public void move(KeyEvent e){
+        if (isDied) return;
         switch (e.getKeyCode()){
             case KeyEvent.VK_D:
-                if (x <= Screen.screen_width - width - 30){
+                if (x <= ScreenUtil.screen_width - width - 30){
                     dir = Dir.D;
                 }
                 break;
@@ -47,7 +50,7 @@ public class Farmer {
                 }
                 break;
             case KeyEvent.VK_S:
-                if (y <= Screen.screen_height - height - 35){
+                if (y <= ScreenUtil.screen_height - height - 35){
                     dir = Dir.S;
                 }
                 break;
@@ -72,12 +75,12 @@ public class Farmer {
                 }
                 break;
             case D:
-                if (x != Screen.screen_width - width - 20) {
+                if (x != ScreenUtil.screen_width - width - 20) {
                     x += 5;
                 }
                 break;
             case S:
-                if (y <= Screen.screen_height - height - 35) {
+                if (y <= ScreenUtil.screen_height - height - 35) {
                     y += 5;
                 }
                 break;
@@ -94,9 +97,10 @@ public class Farmer {
     public void press(boolean a){
         if (health == 0){
             isDied = true;
-        }else if (a && health != 0){
-            health = health - 10;
+        }else if (a && health !=  0 && !Zombie.isDied){
+            health = health - 5;
         }
     }
+
 
 }
